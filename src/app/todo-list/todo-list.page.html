@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-title id="titre" show="true">Notebook</ion-title>
+
+
+    <ion-buttons slot="start">
+      <ion-button id="searchBarBack" (click)="toggleSearchBar()" show="false">
+        <ion-icon id="searchBarBackicon" name="arrow-back"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+
+    <ion-searchbar animated id="searchBar" show="false" mode="ios" (input)="filteredTasks()"></ion-searchbar>
+
+
+    <ion-buttons slot="end">
+
+      <ion-button id="searchBarShow" (click)="toggleSearchBar()" slot="end" show="true">
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+
+      <ion-button id="but" (click)="popupToggle()">
+        <ion-icon id="dot" slot="icon-only" name="ellipsis-vertical" md="ellipsis-vertical" slot="end"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="bg-img">
+
+    <div id="popback" (click)="popupToggle()">
+      <ion-list id="pop" show="false">
+        <h3 class="ent">Menu</h3>
+        <div button [routerLink]="['/setting/']">Paramètres</div>
+        <div button [routerLink]="['/done/']">Tâches terminées</div>
+        <div button [routerLink]="['/follow/']">Suivez-nous - Partagez</div>
+        <div button [routerLink]="['/about/']">A propos de l'application</div>
+      </ion-list>
+    </div>
+
+    <div id="dateTimeBack" (click)="dateTimePop(null)"></div>
+
+    <ion-list id="dateTimeBox" show="false">
+      <h3 class="ent">Modifier l'alarme</h3>
+      <center>
+        <label>Date & Heure: </label> <br> <br>
+        <input type="datetime-local" id="dateTimeInput" class="dateTime" name="meeting-time"> <br> <br>
+        <ion-button color="tertiary" (click)="setTaskDateTime()">
+          <ion-icon id="setTaskDateTImeBox" name="checkmark-circle-outline" md="md-checkmark-circle-outline"
+            style="zoom: 3.0;" color="light"></ion-icon>
+        </ion-button>
+      </center>
+    </ion-list>
+
+    <div id="datebar">
+      <h1><b>Aujourd'hui</b></h1>
+      <h5>{{ currentDate }}</h5><br>
+    </div>
+
+    <div id="tasklist">
+
+      <ion-list class="lir" id="taskList">
+
+        <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+
+          <ion-item lines="full" *ngFor="let task of tasks; let i = index" data-ids="i">
+
+            <div id="roundselector">
+              <ion-checkbox (ionChange)="changeCheckState(task)" slot="start" size="32" mode="ios" disabled="false"
+                color="success"></ion-checkbox>
+            </div>
+
+            <!-- color="success" -->
+
+            <ion-label id="lab">
+              <strong>{{task.title}}</strong>
+              <p>{{task.description}}</p>
+              <p>{{ getDate(task.date) }}, {{getTime(task.date)}} </p>
+            </ion-label>
+
+            <div item-end>
+
+              <ion-buttons slot="end">
+
+                <button *ngIf="task.remindMe" (click)="dateTimePop(task)">
+                  <ion-icon name="alarm" style="zoom:1.5"></ion-icon>
+                  <!--<ion-icon name="alarm" md="md-alarm" ></ion-icon>-->
+                </button>
+
+                <button [routerLink]="['/update-todo/', task.id]">
+                  <ion-icon name="create" style="zoom:1.5" color="tertiary"></ion-icon>
+                </button>
+
+                <button (click)="remove(task.id)">
+                  <ion-icon name="trash" style="zoom:1.5" color="danger"></ion-icon>
+                </button>
+
+                <button>
+                  <ion-reorder name="icon">
+                    <ion-icon name="move-outline" style="zoom:1.5" color="primary"></ion-icon>
+                  </ion-reorder>
+                </button>
+
+              </ion-buttons>
+            </div>
+
+          </ion-item>
+        </ion-reorder-group>
+      </ion-list>
+
+    </div>
+  </div>
+
+
+
+</ion-content>

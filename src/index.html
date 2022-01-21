@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Ionic App</title>
+
+  <base href="/" />
+
+  <meta name="color-scheme" content="light dark" />
+  <meta name="viewport"
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <link rel="icon" type="image/png" href="assets/ila.png" />
+
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+</head>
+
+
+<style>
+  #preloader {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  #preloaderForm {
+    position: absolute;
+    left: 50vw;
+    top: 50vh;
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+  }
+
+
+  #mot{
+    position: absolute;
+    left: 50vw;
+    top: 82vh;
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+  }
+
+  #motto{
+    position: absolute;
+    left: 50vw;
+    top: 85vh;
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+  }
+
+</style>
+
+
+<body>
+  <div id="preloader">
+
+    <div id="preloaderForm">
+      <img src="./assets/ila.png" width="128px" alt="" />
+    </div>
+
+    <div id="mot">
+      <a>from</a>
+    </div>
+
+    <div id="motto">
+        <b>FORGE</b>
+    </div>
+  
+  </div>
+
+
+  <app-root style="display: none;"></app-root>
+
+
+<!-- add slpash Screen-->
+  <script lang="js">
+    window.onload = function () {
+      setTimeout(function () {
+        document.querySelector("app-root").style.display = "block";
+        document.querySelector("body").removeChild(document.querySelector("#preloader"));
+      },700);
+    };
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Create Task</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form [formGroup]="todoForm" (ngSubmit)="onSubmit(todoForm.value)">
+    <ion-item>
+      <ion-label position="floating">Title</ion-label>
+      <ion-input formControlName="title" type="text" required clearInput></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-input formControlName="description" type="text" required clearInput></ion-input>
+    </ion-item>
+
+    <ion-item style="margin-top: 24px;">
+      <ion-label>Ajouter un rappel</ion-label>
+      <label class="switch">
+        <input type="checkbox" formControlName="remindMe" (change)="toogleButton()" />
+        <span class="slider round"></span>
+      </label>
+      <!--<ion-toggle formControlName="remindMe" value="false" (click)="toogleButton()" name="blueberry" color="success" slot="end" style="zoom: 0.8;"></ion-toggle> -->
+    </ion-item>
+
+    <ion-item class="remindItem" show="false">
+      <label>Date & Heure: </label>
+      <input type="datetime-local" formControlName="dateTime" class="dateTime" name="meeting-time"
+        style="width: 200px;">
+    </ion-item>
+
+    <ion-button class="ion-margin-top" type="submit" expand="block" color="success">Create</ion-button>
+  </form>
+
+  <ion-card>
+    <!-- <img src="./assets/me.jpg"/>-->
+    <ion-card-header>
+      <ion-card-subtitle>A propos de l'auteur</ion-card-subtitle> <br>
+      <ion-card-title class="tit">Henri Bienvenue NACKO</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Cette application de ToDoList est un produit de <strong>FORGE. Corporation</strong>, et a pour objectif de nous
+      aider à améliorer la gestion de notre précieux temps.
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>
