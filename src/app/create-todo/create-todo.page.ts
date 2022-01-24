@@ -40,11 +40,11 @@ export class CreateTodoPage implements OnInit {
   }
 
   ngOnInit(): void {
-      
+
   }
   onSubmit(value: any) {
     if (!this.todoForm.valid) {
-      window.confirm("Please, fill up the form");
+      window.confirm('Please, fill up the form');
       return false;
     } else {
       value.remindMe = this.remindMe == null ? false : this.remindMe;
@@ -65,35 +65,35 @@ export class CreateTodoPage implements OnInit {
   }
 
   async localStay(file: any){
-    await this.StorageService.set("task",file);
+    await this.StorageService.set('task',file);
   }
 
 
 
   /*
-  
+
     setTimeout(() => {
         console.log('Async operation has ended');
         value.target.complete();
       }, 2000);
-      
+
   */
 
 
   //
   toogleButton() {
     this.remindMe = !this.remindMe;
-    let objs = document.querySelectorAll(".remindItem");
+    const objs = document.querySelectorAll('.remindItem');
     if (this.remindMe) {
       for (let i = 0; i < objs.length; i++) {
-        let obj = objs[i];
-        obj.setAttribute("show", "true");
+        const obj = objs[i];
+        obj.setAttribute('show', 'true');
       }
     }
     else {
       for (let i = 0; i < objs.length; i++) {
-        let obj = objs[i];
-        obj.setAttribute("show", "false");
+        const obj = objs[i];
+        obj.setAttribute('show', 'false');
       }
     }
   }

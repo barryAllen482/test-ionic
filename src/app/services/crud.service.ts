@@ -1,4 +1,5 @@
-import { Storage } from '@ionic/storage-angular';
+import { StorageService } from './Storage-Service.service';
+// import { Storage } from '@ionic/storage-angular';
 import { Injectable } from '@angular/core';
 import { Firestore, collection, doc, setDoc, addDoc, getDocs, getDoc, deleteDoc  } from '@angular/fire/firestore';
 
@@ -14,24 +15,22 @@ export class ToDo {
 })
 export class CrudService {
 
-  private _storage: Storage | null = null;
+  // private _storage: Storage | null = null;
 
   constructor(
     private firestore: Firestore,
-    private Storage: Storage) {
-      this.init();
-    }
+    private storageService: StorageService) {}
 
-    async init(){
-      const Storage = await this.Storage.create();
-      this.Storage.create();
-    }
+    // async init(){
+    //   const storage = await this.storage.create();
+    //   this._storage.create();
+    // }
 
-    //  Create and expose methods that users of this service can
-    // call, for example:
-    public set(key: string, value: any){
-      this._storage?.set(key, value);
-    }
+    // //  Create and expose methods that users of this service can
+    // // call, for example:
+    // public set(key: string, value: any){
+    //   this._storage?.set(key, value);
+    // }
 
 /*
 
@@ -55,6 +54,7 @@ export class CrudService {
 
   create(todo: ToDo) {
     todo.date = new Date().toISOString();
+    this.storageService.set('task', todo);
     return addDoc(collection(this.firestore, 'tasks'), todo);
   }
 
