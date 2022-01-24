@@ -54,7 +54,6 @@ export class CrudService {
 
   create(todo: ToDo) {
     todo.date = new Date().toISOString();
-    this.storageService.set('task', todo);
     return addDoc(collection(this.firestore, 'tasks'), todo);
   }
 
